@@ -33,9 +33,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	}
 
 	@Override
-	public Authentication attemptAuthentication(HttpServletRequest req,
-
-			HttpServletResponse res) throws AuthenticationException {
+	public Authentication attemptAuthentication(HttpServletRequest req, HttpServletResponse res) throws AuthenticationException {
 
 		try {
 
@@ -43,8 +41,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
 					.readValue(req.getInputStream(), CredenciaisDTO.class);
 
-			UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(creds.getEmail(),
-					creds.getSenha(), new ArrayList<>());
+			UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(creds.getEmail(), creds.getSenha(), new ArrayList<>());
 
 			Authentication auth = authenticationManager.authenticate(authToken);
 
@@ -61,13 +58,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	}
 
 	@Override
-	protected void successfulAuthentication(HttpServletRequest req,
-
-			HttpServletResponse res,
-
-			FilterChain chain,
-
-			Authentication auth) throws IOException, ServletException {
+	protected void successfulAuthentication(HttpServletRequest req,	HttpServletResponse res, FilterChain chain,	Authentication auth) throws IOException, ServletException {
 
 		String username = ((UserSS) auth.getPrincipal()).getUsername();
 
